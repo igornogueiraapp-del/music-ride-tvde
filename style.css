@@ -89,3 +89,17 @@ p {
   max-width: 300px;
   font-size: 18px;
 }
+.send-button {
+  width: 80%;
+  max-width: 320px;
+  padding: 16px;
+  margin: 25px auto 0;
+  display: block;
+  border: none;
+  border-radius: 18px;
+  background: white;
+  color: #111827;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
