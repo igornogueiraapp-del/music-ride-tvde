@@ -1,19 +1,94 @@
-// Abre a tela de músicas
-function openMusic() {
-    document.getElementById("languageScreen").style.display = "none";
+function openMusic(language){
+
+    document.getElementById("homeScreen").style.display = "none";
+
     document.getElementById("musicScreen").style.display = "block";
+
+
+    const backButton = document.querySelector(".back-button");
+    const musicTitle = document.querySelector(".music-screen h2");
+    const searchBox = document.querySelector(".search-box");
+    const musicCategory = document.querySelector(".music-screen h3");
+    const sendButton = document.querySelector(".send-button");
+
+
+    if(language === "en"){
+
+        backButton.innerHTML = "← Back";
+        musicTitle.innerHTML = "🎧 Choose your music";
+        searchBox.innerHTML = "🔎 Search music";
+        musicCategory.innerHTML = "⭐ Most requested songs";
+        sendButton.innerHTML = "🚗 Send to driver";
+
+    }
+
+
+    else if(language === "es"){
+
+        backButton.innerHTML = "← Volver";
+        musicTitle.innerHTML = "🎧 Elige tu música";
+        searchBox.innerHTML = "🔎 Buscar música";
+        musicCategory.innerHTML = "⭐ Canciones más solicitadas";
+        sendButton.innerHTML = "🚗 Enviar al conductor";
+
+    }
+
+
+    else if(language === "fr"){
+
+        backButton.innerHTML = "← Retour";
+        musicTitle.innerHTML = "🎧 Choisissez votre musique";
+        searchBox.innerHTML = "🔎 Rechercher une musique";
+        musicCategory.innerHTML = "⭐ Musiques les plus demandées";
+        sendButton.innerHTML = "🚗 Envoyer au conducteur";
+
+    }
+
+
+    else if(language === "it"){
+
+        backButton.innerHTML = "← Indietro";
+        musicTitle.innerHTML = "🎧 Scegli la tua musica";
+        searchBox.innerHTML = "🔎 Cerca musica";
+        musicCategory.innerHTML = "⭐ Brani più richiesti";
+        sendButton.innerHTML = "🚗 Invia al conducente";
+
+    }
+
+
+    else{
+
+        backButton.innerHTML = "← Voltar";
+        musicTitle.innerHTML = "🎧 Escolha sua música";
+        searchBox.innerHTML = "🔎 Buscar música";
+        musicCategory.innerHTML = "⭐ Músicas mais pedidas";
+        sendButton.innerHTML = "🚗 Enviar ao motorista";
+
+    }
+
 }
 
-// Seleciona uma música
-function selectMusic(card) {
 
-    // Remove a seleção de todos os cards
-    const cards = document.querySelectorAll(".music-card");
 
-    cards.forEach(function(item) {
+function goBack(){
+
+    document.getElementById("musicScreen").style.display = "none";
+
+    document.getElementById("homeScreen").style.display = "block";
+
+}
+
+
+
+function selectMusic(card){
+
+    document.querySelectorAll(".music-card").forEach(function(item){
+
         item.classList.remove("selected");
+
     });
 
-    // Marca apenas o card clicado
+
     card.classList.add("selected");
+
 }
