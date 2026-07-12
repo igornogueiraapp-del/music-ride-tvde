@@ -97,8 +97,8 @@ p {
   display: block;
   border: none;
   border-radius: 18px;
-  background: red;
-  color: #111827;
+  background: #0f766e;
+  color: white;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
