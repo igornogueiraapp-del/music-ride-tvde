@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RideTune</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,67 +12,106 @@
 
 <div class="container">
 
-  <h1>🎵 RideTune</h1>
-  <p>Escolha o seu idioma e personalize a música da sua viagem em poucos segundos.</p>
+    <!-- TELA INICIAL -->
+    <div id="homeScreen">
 
-  <!-- Tela de idiomas -->
-  <div class="languages" id="languageScreen">
+        <img src="images/logo.png" alt="RideTune" class="logo">
 
-    <div class="language" onclick="openMusic()">🇧🇷<br>Português</div>
+        <h1>RideTune</h1>
 
-    <div class="language" onclick="openMusic()">🇺🇸<br>English</div>
+        <p class="subtitle">
+            Your ride. Your soundtrack.
+        </p>
 
-    <div class="language" onclick="openMusic()">🇪🇸<br>Español</div>
+        <h3>Escolha seu idioma</h3>
 
-    <div class="language" onclick="openMusic()">🇫🇷<br>Français</div>
+        <div class="languages" id="languageScreen">
 
-    <div class="language" onclick="openMusic()">🇮🇹<br>Italiano</div>
+            <div class="language" onclick="openMusic()">
+                🇧🇷<br>Português
+            </div>
 
-  </div>
+            <div class="language" onclick="openMusic()">
+                🇺🇸<br>English
+            </div>
 
-  <!-- Tela de músicas -->
-  <div class="music-screen" id="musicScreen">
+            <div class="language" onclick="openMusic()">
+                🇪🇸<br>Español
+            </div>
 
-    <h2>🎧 Escolha sua música</h2>
+            <div class="language" onclick="openMusic()">
+                🇫🇷<br>Français
+            </div>
 
-    <div class="search-box">
-      🔎 Buscar música
+            <div class="language" onclick="openMusic()">
+                🇮🇹<br>Italiano
+            </div>
+
+        </div>
+
     </div>
 
-    <h3>⭐ Músicas mais pedidas</h3>
 
-    <div class="music-card" onclick="selectMusic(this)">
-      <div class="check">✔</div>
-      <div class="cover">🎵</div>
-      <div class="music-info">
-        <strong>Nome da música</strong>
-        <p>Artista</p>
-      </div>
+    <!-- TELA DE MÚSICAS -->
+
+    <div class="music-screen" id="musicScreen">
+
+        <button class="back-button" onclick="goBack()">
+            ← Voltar
+        </button>
+
+        <h2>🎧 Escolha sua música</h2>
+
+        <div class="search-box">
+            🔎 Buscar música
+        </div>
+
+        <h3>⭐ Músicas mais pedidas</h3>
+
+        <div class="music-card" onclick="selectMusic(this)">
+
+            <div class="check">✔</div>
+
+            <div class="cover">🎵</div>
+
+            <div class="music-info">
+                <strong>Nome da música</strong>
+                <p>Artista</p>
+            </div>
+
+        </div>
+
+        <div class="music-card" onclick="selectMusic(this)">
+
+            <div class="check">✔</div>
+
+            <div class="cover">🎵</div>
+
+            <div class="music-info">
+                <strong>Nome da música</strong>
+                <p>Artista</p>
+            </div>
+
+        </div>
+
+        <div class="music-card" onclick="selectMusic(this)">
+
+            <div class="check">✔</div>
+
+            <div class="cover">🎵</div>
+
+            <div class="music-info">
+                <strong>Nome da música</strong>
+                <p>Artista</p>
+            </div>
+
+        </div>
+
+        <button class="send-button">
+            🚗 Enviar ao motorista
+        </button>
+
     </div>
-
-    <div class="music-card" onclick="selectMusic(this)">
-      <div class="check">✔</div>
-      <div class="cover">🎵</div>
-      <div class="music-info">
-        <strong>Nome da música</strong>
-        <p>Artista</p>
-      </div>
-    </div>
-
-    <div class="music-card" onclick="selectMusic(this)">
-      <div class="check">✔</div>
-      <div class="cover">🎵</div>
-      <div class="music-info">
-        <strong>Nome da música</strong>
-        <p>Artista</p>
-      </div>
-    </div>
-
-    <button class="send-button">
-      🚗 Enviar ao motorista
-    </button>
-
-  </div>
 
 </div>
 
