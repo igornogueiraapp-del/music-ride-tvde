@@ -27,23 +27,23 @@
 
         <div class="languages" id="languageScreen">
 
-            <div class="language" onclick="openMusic()">
+            <div class="language" onclick="openMusic('pt')">
                 🇧🇷<br>Português
             </div>
 
-            <div class="language" onclick="openMusic()">
+            <div class="language" onclick="openMusic('en')">
                 🇺🇸<br>English
             </div>
 
-            <div class="language" onclick="openMusic()">
+            <div class="language" onclick="openMusic('es')">
                 🇪🇸<br>Español
             </div>
 
-            <div class="language" onclick="openMusic()">
+            <div class="language" onclick="openMusic('fr')">
                 🇫🇷<br>Français
             </div>
 
-            <div class="language" onclick="openMusic()">
+            <div class="language" onclick="openMusic('it')">
                 🇮🇹<br>Italiano
             </div>
 
@@ -68,18 +68,6 @@
 
         <h3>⭐ Músicas mais pedidas</h3>
 
-        <div class="music-card" onclick="selectMusic(this)">
-
-            <div class="check">✔</div>
-
-            <div class="cover">🎵</div>
-
-            <div class="music-info">
-                <strong>Nome da música</strong>
-                <p>Artista</p>
-            </div>
-
-        </div>
 
         <div class="music-card" onclick="selectMusic(this)">
 
@@ -94,6 +82,7 @@
 
         </div>
 
+
         <div class="music-card" onclick="selectMusic(this)">
 
             <div class="check">✔</div>
@@ -106,14 +95,31 @@
             </div>
 
         </div>
+
+
+        <div class="music-card" onclick="selectMusic(this)">
+
+            <div class="check">✔</div>
+
+            <div class="cover">🎵</div>
+
+            <div class="music-info">
+                <strong>Nome da música</strong>
+                <p>Artista</p>
+            </div>
+
+        </div>
+
 
         <button class="send-button">
             🚗 Enviar ao motorista
         </button>
 
+
     </div>
 
 </div>
+
 
 <script src="script.js"></script>
 
