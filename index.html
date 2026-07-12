@@ -9,58 +9,69 @@
 
 <body>
 
-  <div class="container">
-    <h1>🎵 RideTune</h1>
-    <p>Escolha o seu idioma e personalize a música da sua viagem em poucos segundos.</p>
+<div class="container">
 
-    <div class="languages">
-      <div class="language" onclick="openMusic()">🇧🇷<br>Português</div>
-<div class="language" onclick="openMusic()">🇺🇸<br>English</div>
-<div class="language" onclick="openMusic()">🇪🇸<br>Español</div>
-<div class="language" onclick="openMusic()">🇫🇷<br>Français</div>
-<div class="language" onclick="openMusic()">🇮🇹<br>Italiano</div>
-</div>
+  <h1>🎵 RideTune</h1>
+  <p>Escolha o seu idioma e personalize a música da sua viagem em poucos segundos.</p>
 
-<div class="music-screen" id="musicScreen">
+  <!-- Tela de idiomas -->
+  <div class="languages" id="languageScreen">
 
-  <h2>🎧 Escolha sua música</h2>
+    <div class="language" onclick="openMusic()">🇧🇷<br>Português</div>
 
-  <div class="search-box">
-    🔎 Buscar música
+    <div class="language" onclick="openMusic()">🇺🇸<br>English</div>
+
+    <div class="language" onclick="openMusic()">🇪🇸<br>Español</div>
+
+    <div class="language" onclick="openMusic()">🇫🇷<br>Français</div>
+
+    <div class="language" onclick="openMusic()">🇮🇹<br>Italiano</div>
+
   </div>
 
-  <h3>⭐ Músicas mais pedidas</h3>
+  <!-- Tela de músicas -->
+  <div class="music-screen" id="musicScreen">
 
-  <div class="music-card">
-    <div class="cover">🎵</div>
-    <div class="music-info">
-      <strong>Nome da música</strong>
-      <p>Artista</p>
+    <h2>🎧 Escolha sua música</h2>
+
+    <div class="search-box">
+      🔎 Buscar música
     </div>
-  </div>
 
-  <div class="music-card">
-    <div class="cover">🎵</div>
-    <div class="music-info">
-      <strong>Nome da música</strong>
-      <p>Artista</p>
-    </div>
-  </div>
+    <h3>⭐ Músicas mais pedidas</h3>
 
- <div class="music-card" onclick="selectMusic(this)">
-    <div class="check">✔</div>
-
-    <div class="cover">🎵</div>
-
-    <div class="music-info">
+    <div class="music-card" onclick="selectMusic(this)">
+      <div class="check">✔</div>
+      <div class="cover">🎵</div>
+      <div class="music-info">
         <strong>Nome da música</strong>
         <p>Artista</p>
+      </div>
     </div>
-</div>
 
-  <button class="send-button">
-    🚗 Enviar ao motorista
-  </button>
+    <div class="music-card" onclick="selectMusic(this)">
+      <div class="check">✔</div>
+      <div class="cover">🎵</div>
+      <div class="music-info">
+        <strong>Nome da música</strong>
+        <p>Artista</p>
+      </div>
+    </div>
+
+    <div class="music-card" onclick="selectMusic(this)">
+      <div class="check">✔</div>
+      <div class="cover">🎵</div>
+      <div class="music-info">
+        <strong>Nome da música</strong>
+        <p>Artista</p>
+      </div>
+    </div>
+
+    <button class="send-button">
+      🚗 Enviar ao motorista
+    </button>
+
+  </div>
 
 </div>
 
