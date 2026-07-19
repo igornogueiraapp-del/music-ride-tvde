@@ -79,6 +79,7 @@ else{
     sendButton.innerHTML = "🚗 Enviar ao motorista";
 
 }
+    loadTopHits();
 }
 
 
