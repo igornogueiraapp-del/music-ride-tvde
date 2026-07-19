@@ -170,6 +170,8 @@ TELA MÚSICAS
 
 .search-box{
 
+    width:100%;
+
     background:#F3F4F6;
 
     padding:14px;
@@ -178,7 +180,21 @@ TELA MÚSICAS
 
     margin-bottom:20px;
 
+    border:none;
+
+    outline:none;
+
+    color:#333;
+
+    font-size:16px;
+
+}
+
+.search-box::placeholder{
+
     color:#777;
+
+}
 
 }
 
