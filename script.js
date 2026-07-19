@@ -70,15 +70,22 @@ function openMusic(language){
 
     }
 
-    else{
+  else{
 
-        backButton.innerHTML = "← Voltar";
-        musicTitle.innerHTML = "🎧 Escolha sua música";
-        searchBox.placeholder = "🔎 Buscar música";
-        topHitsTitle.innerHTML = "⭐ Músicas mais pedidas";
-        sendButton.innerHTML = "🚗 Enviar ao motorista";
+    backButton.innerHTML = "← Voltar";
+    musicTitle.innerHTML = "🎧 Escolha sua música";
+    searchBox.placeholder = "🔎 Buscar música";
+    topHitsTitle.innerHTML = "⭐ Músicas mais pedidas";
+    sendButton.innerHTML = "🚗 Enviar ao motorista";
 
-    }
+}
+
+}
+
+
+// ==========================
+// MÚSICAS MAIS PEDIDAS
+// ==========================
 
 function loadTopHits(){
 
