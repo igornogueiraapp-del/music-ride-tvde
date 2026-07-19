@@ -11,10 +11,10 @@ function openMusic(language){
     const musicCategory = document.querySelector(".music-screen h3");
     const sendButton = document.querySelector(".send-button");
 
-    // Reinicia seleção
     selectedMusic = null;
     sendButton.disabled = true;
     sendButton.classList.remove("enabled");
+
 
     if(language === "en"){
 
@@ -66,7 +66,23 @@ function openMusic(language){
 
     }
 
+
+    // Música de teste para abrir no Demus
+
+    document.getElementById("topHits").innerHTML = `
+
+        <div class="music-card"
+             onclick="selectMusic(this)"
+             data-link="https://youtube.com/watch?v=5NPBIwQyPWE">
+
+             🎵 Música teste
+
+        </div>
+
+    `;
+
 }
+
 
 function goBack(){
 
@@ -74,6 +90,7 @@ function goBack(){
     document.getElementById("homeScreen").style.display = "block";
 
 }
+
 
 function selectMusic(card){
 
@@ -83,9 +100,11 @@ function selectMusic(card){
 
     });
 
+
     card.classList.add("selected");
 
     selectedMusic = card;
+
 
     const sendButton = document.querySelector(".send-button");
 
@@ -94,12 +113,24 @@ function selectMusic(card){
 
 }
 
+
+
 function sendMusic(){
 
     if(selectedMusic == null){
+
         return;
+
     }
 
-    alert("✅ Pedido enviado ao motorista!");
+
+    const musicLink = selectedMusic.getAttribute("data-link");
+
+
+    if(musicLink){
+
+        window.location.href = musicLink;
+
+    }
 
 }
