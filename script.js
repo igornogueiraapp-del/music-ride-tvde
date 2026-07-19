@@ -1,9 +1,9 @@
+let selectedMusic = null;
+
 function openMusic(language){
 
     document.getElementById("homeScreen").style.display = "none";
-
     document.getElementById("musicScreen").style.display = "block";
-
 
     const backButton = document.querySelector(".back-button");
     const musicTitle = document.querySelector(".music-screen h2");
@@ -11,6 +11,10 @@ function openMusic(language){
     const musicCategory = document.querySelector(".music-screen h3");
     const sendButton = document.querySelector(".send-button");
 
+    // Sempre inicia desativado
+    selectedMusic = null;
+    sendButton.disabled = true;
+    sendButton.classList.remove("enabled");
 
     if(language === "en"){
 
@@ -22,7 +26,6 @@ function openMusic(language){
 
     }
 
-
     else if(language === "es"){
 
         backButton.innerHTML = "← Volver";
@@ -32,7 +35,6 @@ function openMusic(language){
         sendButton.innerHTML = "🚗 Enviar al conductor";
 
     }
-
 
     else if(language === "fr"){
 
@@ -44,7 +46,6 @@ function openMusic(language){
 
     }
 
-
     else if(language === "it"){
 
         backButton.innerHTML = "← Indietro";
@@ -54,7 +55,6 @@ function openMusic(language){
         sendButton.innerHTML = "🚗 Invia al conducente";
 
     }
-
 
     else{
 
@@ -68,17 +68,12 @@ function openMusic(language){
 
 }
 
-
-
 function goBack(){
 
     document.getElementById("musicScreen").style.display = "none";
-
     document.getElementById("homeScreen").style.display = "block";
 
 }
-
-
 
 function selectMusic(card){
 
@@ -88,7 +83,23 @@ function selectMusic(card){
 
     });
 
-
     card.classList.add("selected");
+
+    selectedMusic = card;
+
+    const sendButton = document.querySelector(".send-button");
+
+    sendButton.disabled = false;
+    sendButton.classList.add("enabled");
+
+}
+
+function sendMusic(){
+
+    if(selectedMusic == null){
+        return;
+    }
+
+    alert("✅ Pedido enviado ao motorista!");
 
 }
