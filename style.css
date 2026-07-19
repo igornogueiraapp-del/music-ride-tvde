@@ -52,7 +52,7 @@ TELA INICIAL
 
     color:white;
 
-  background:linear-gradient(180deg,#020617,#061A33);
+    background:linear-gradient(180deg,#020617,#061A33);
 
 }
 
@@ -312,7 +312,7 @@ BOTÃO
 
     border-radius:16px;
 
-    background:#22C55E;
+    background:#BFC5CD;
 
     color:white;
 
@@ -320,14 +320,34 @@ BOTÃO
 
     font-weight:bold;
 
-    cursor:pointer;
+    cursor:not-allowed;
 
     transition:.25s;
 
 }
 
-.send-button:hover{
+/* Quando habilitado */
+
+.send-button.enabled{
+
+    background:#22C55E;
+
+    cursor:pointer;
+
+}
+
+/* Efeito ao passar o mouse */
+
+.send-button.enabled:hover{
 
     transform:scale(1.02);
+
+}
+
+/* Quando estiver desabilitado */
+
+.send-button:disabled{
+
+    opacity:0.8;
 
 }
