@@ -1,15 +1,20 @@
 let selectedMusic = null;
 
+
+// ABRIR TELA DE MÚSICA
+
 function openMusic(language){
 
     document.getElementById("homeScreen").style.display = "none";
     document.getElementById("musicScreen").style.display = "block";
+
 
     const backButton = document.querySelector(".back-button");
     const musicTitle = document.querySelector(".music-screen h2");
     const searchBox = document.querySelector(".search-box");
     const musicCategory = document.querySelector(".music-screen h3");
     const sendButton = document.querySelector(".send-button");
+
 
     selectedMusic = null;
     sendButton.disabled = true;
@@ -26,36 +31,6 @@ function openMusic(language){
 
     }
 
-    else if(language === "es"){
-
-        backButton.innerHTML = "← Volver";
-        musicTitle.innerHTML = "🎧 Elige tu música";
-        searchBox.placeholder = "🔎 Buscar música";
-        musicCategory.innerHTML = "⭐ Canciones más solicitadas";
-        sendButton.innerHTML = "🚗 Enviar al conductor";
-
-    }
-
-    else if(language === "fr"){
-
-        backButton.innerHTML = "← Retour";
-        musicTitle.innerHTML = "🎧 Choisissez votre musique";
-        searchBox.placeholder = "🔎 Rechercher une musique";
-        musicCategory.innerHTML = "⭐ Musiques les plus demandées";
-        sendButton.innerHTML = "🚗 Envoyer au conducteur";
-
-    }
-
-    else if(language === "it"){
-
-        backButton.innerHTML = "← Indietro";
-        musicTitle.innerHTML = "🎧 Scegli la tua musica";
-        searchBox.placeholder = "🔎 Cerca musica";
-        musicCategory.innerHTML = "⭐ Brani più richiesti";
-        sendButton.innerHTML = "🚗 Invia al conducente";
-
-    }
-
     else{
 
         backButton.innerHTML = "← Voltar";
@@ -67,15 +42,29 @@ function openMusic(language){
     }
 
 
-    // Música de teste
+    loadTopHits();
+
+}
+
+
+
+// MÚSICAS INICIAIS
+
+function loadTopHits(){
 
     document.getElementById("topHits").innerHTML = `
 
         <div class="music-card"
         onclick="selectMusic(this)"
-        data-link="https://m.youtube.com/watch?v=qFLhGq0060w&list=RDqFLhGq0060w&start_radio=1">
+        data-link="https://m.youtube.com/watch?v=qFLhGq0060w">
 
-            🎵 Música teste
+            <img src="https://i.ytimg.com/vi/qFLhGq0060w/hqdefault.jpg">
+
+            <div>
+                <strong>Save Your Tears</strong>
+                <br>
+                <span>The Weeknd</span>
+            </div>
 
         </div>
 
@@ -85,16 +74,107 @@ function openMusic(language){
 
 
 
-function goBack(){
+// BUSCAR MÚSICA
 
-    document.getElementById("musicScreen").style.display = "none";
-    document.getElementById("homeScreen").style.display = "block";
+document.addEventListener("DOMContentLoaded", function(){
+
+
+    const search = document.getElementById("musicSearch");
+
+
+    search.addEventListener("keypress", function(event){
+
+        if(event.key === "Enter"){
+
+            searchMusic();
+
+        }
+
+    });
+
+
+});
+
+
+
+async function searchMusic(){
+
+
+    const query = document.getElementById("musicSearch").value;
+
+
+    if(query.trim() === ""){
+        return;
+    }
+
+
+    const url =
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${YOUTUBE_API_KEY}`;
+
+
+    const response = await fetch(url);
+
+
+    const data = await response.json();
+
+
+    const results = document.getElementById("searchResults");
+
+
+    results.innerHTML = "";
+
+
+    data.items.forEach(function(item){
+
+
+        const videoId = item.id.videoId;
+
+        const title = item.snippet.title;
+
+        const channel = item.snippet.channelTitle;
+
+        const image = item.snippet.thumbnails.medium.url;
+
+
+        results.innerHTML += `
+
+        <div class="music-card"
+        onclick="selectMusic(this)"
+        data-link="https://youtube.com/watch?v=${videoId}">
+
+
+            <img src="${image}">
+
+
+            <div class="music-info">
+
+                <strong>${title}</strong>
+
+                <br>
+
+                <span>${channel}</span>
+
+            </div>
+
+
+        </div>
+
+        `;
+
+
+    });
+
 
 }
 
 
 
+
+
+// SELECIONAR MÚSICA
+
 function selectMusic(card){
+
 
     document.querySelectorAll(".music-card").forEach(function(item){
 
@@ -105,20 +185,28 @@ function selectMusic(card){
 
     card.classList.add("selected");
 
+
     selectedMusic = card;
 
 
     const sendButton = document.querySelector(".send-button");
 
+
     sendButton.disabled = false;
+
     sendButton.classList.add("enabled");
+
 
 }
 
 
 
 
+
+// ENVIAR PARA O DEMUS
+
 function sendMusic(){
+
 
     if(selectedMusic == null){
 
@@ -130,13 +218,11 @@ function sendMusic(){
     const youtubeLink = selectedMusic.getAttribute("data-link");
 
 
-    if(youtubeLink){
+    const demusLink =
+    "demus://?url=" + encodeURIComponent(youtubeLink);
 
-        const demusLink = "demus://?url=" + encodeURIComponent(youtubeLink);
 
+    window.location.href = demusLink;
 
-        window.location.href = demusLink;
-
-    }
 
 }
