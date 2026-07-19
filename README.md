@@ -1,3 +1,7 @@
-# Music Ride TVDE
+RideTune v2.0
 
-Projeto para permitir que passageiros de TVDE escolham músicas através de um QR Code durante a viagem.
+Os arquivos completos da integração com Deezer são extensos e precisam ser gerados em conjunto.
+Este pacote contém os arquivos-base para substituição.
+
+Observação:
+A integração completa envolve centenas de linhas de código JavaScript.
