@@ -11,7 +11,7 @@ function openMusic(language){
     const musicCategory = document.querySelector(".music-screen h3");
     const sendButton = document.querySelector(".send-button");
 
-    // Sempre inicia desativado
+    // Reinicia seleção
     selectedMusic = null;
     sendButton.disabled = true;
     sendButton.classList.remove("enabled");
@@ -20,7 +20,7 @@ function openMusic(language){
 
         backButton.innerHTML = "← Back";
         musicTitle.innerHTML = "🎧 Choose your music";
-        searchBox.innerHTML = "🔎 Search music";
+        searchBox.placeholder = "🔎 Search music";
         musicCategory.innerHTML = "⭐ Most requested songs";
         sendButton.innerHTML = "🚗 Send to driver";
 
@@ -30,7 +30,7 @@ function openMusic(language){
 
         backButton.innerHTML = "← Volver";
         musicTitle.innerHTML = "🎧 Elige tu música";
-        searchBox.innerHTML = "🔎 Buscar música";
+        searchBox.placeholder = "🔎 Buscar música";
         musicCategory.innerHTML = "⭐ Canciones más solicitadas";
         sendButton.innerHTML = "🚗 Enviar al conductor";
 
@@ -40,7 +40,7 @@ function openMusic(language){
 
         backButton.innerHTML = "← Retour";
         musicTitle.innerHTML = "🎧 Choisissez votre musique";
-        searchBox.innerHTML = "🔎 Rechercher une musique";
+        searchBox.placeholder = "🔎 Rechercher une musique";
         musicCategory.innerHTML = "⭐ Musiques les plus demandées";
         sendButton.innerHTML = "🚗 Envoyer au conducteur";
 
@@ -50,7 +50,7 @@ function openMusic(language){
 
         backButton.innerHTML = "← Indietro";
         musicTitle.innerHTML = "🎧 Scegli la tua musica";
-        searchBox.innerHTML = "🔎 Cerca musica";
+        searchBox.placeholder = "🔎 Cerca musica";
         musicCategory.innerHTML = "⭐ Brani più richiesti";
         sendButton.innerHTML = "🚗 Invia al conducente";
 
@@ -60,7 +60,7 @@ function openMusic(language){
 
         backButton.innerHTML = "← Voltar";
         musicTitle.innerHTML = "🎧 Escolha sua música";
-        searchBox.innerHTML = "🔎 Buscar música";
+        searchBox.placeholder = "🔎 Buscar música";
         musicCategory.innerHTML = "⭐ Músicas mais pedidas";
         sendButton.innerHTML = "🚗 Enviar ao motorista";
 
