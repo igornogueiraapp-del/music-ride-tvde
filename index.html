@@ -13,19 +13,25 @@
 
 </head>
 
+
 <body>
 
+
 <div class="container">
+
 
     <!-- ===========================
          TELA INICIAL
     ============================ -->
 
+
     <div id="homeScreen">
+
 
         <img src="images/logo.png"
              alt="RideTune"
              class="logo">
+
 
         <p class="subtitle">
 
@@ -33,58 +39,69 @@
 
         </p>
 
+
         <h3 id="languageTitle">
+
             Escolha seu idioma
+
         </h3>
 
+
+
         <div class="languages">
+
 
             <div class="language"
                  onclick="openMusic('pt')">
 
                 🇧🇷<br>
-
                 Português
 
             </div>
+
+
 
             <div class="language"
                  onclick="openMusic('en')">
 
                 🇺🇸<br>
-
                 English
 
             </div>
+
+
 
             <div class="language"
                  onclick="openMusic('es')">
 
                 🇪🇸<br>
-
                 Español
 
             </div>
+
+
 
             <div class="language"
                  onclick="openMusic('fr')">
 
                 🇫🇷<br>
-
                 Français
 
             </div>
+
+
 
             <div class="language"
                  onclick="openMusic('it')">
 
                 🇮🇹<br>
-
                 Italiano
 
             </div>
 
+
         </div>
+
 
     </div>
 
@@ -96,9 +113,11 @@
          TELA DE MÚSICAS
     ============================ -->
 
-    <div
-        class="music-screen"
-        id="musicScreen">
+
+    <div class="music-screen"
+         id="musicScreen">
+
+
 
         <button
             class="back-button"
@@ -110,6 +129,7 @@
 
 
 
+
         <h2 id="musicTitle">
 
             🎧 Escolha sua música
@@ -118,7 +138,15 @@
 
 
 
-        <input
+
+
+        <!-- PESQUISA -->
+
+
+        <div class="search-area">
+
+
+            <input
 
             id="musicSearch"
 
@@ -129,10 +157,35 @@
             placeholder="🔎 Buscar música"
 
             autocomplete="off"
-          />
-      <!-- ===========================
+
+            />
+
+
+
+            <button
+
+            class="search-button"
+
+            onclick="searchMusic()">
+
+                🔍
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- ===========================
              TOP HITS
         ============================ -->
+
 
         <h3 id="topHitsTitle">
 
@@ -140,54 +193,72 @@
 
         </h3>
 
-        <div id="topHits">
 
-            <!-- Os Top Hits serão carregados automaticamente pelo JavaScript -->
+
+        <div id="topHits">
 
         </div>
 
 
 
+
+
+
         <!-- ===========================
-             RESULTADOS DA PESQUISA
+             RESULTADOS PESQUISA
         ============================ -->
+
 
         <div id="searchResults">
 
-            <!-- Os resultados aparecerão aqui -->
-
         </div>
 
 
 
+
+
+
         <!-- ===========================
-             BOTÃO
+             BOTÃO MOTORISTA
         ============================ -->
+
 
         <button
 
-            class="send-button"
+        class="send-button"
 
-            id="sendButton"
+        id="sendButton"
 
-            onclick="sendMusic()"
+        onclick="sendMusic()"
 
-            disabled>
+        disabled>
+
 
             🚗 Enviar ao motorista
+
 
         </button>
 
 
-</div>
+
+
+    </div>
+
+
 
 </div>
+
+
+
+
 
 <script src="config.js"></script>
+
 <script src="script.js"></script>
+
+
 
 </body>
 
-</html>
 
-        
+</html>
