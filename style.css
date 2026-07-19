@@ -1,12 +1,16 @@
 /* ==========================
-   RIDE TUNE v0.4
+   RIDE TUNE v0.5
 ========================== */
 
+
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
+
 
 body{
 
@@ -26,9 +30,13 @@ body{
 
 }
 
+
+
 .container{
 
     width:370px;
+
+    max-height:90vh;
 
     background:white;
 
@@ -40,9 +48,13 @@ body{
 
 }
 
+
+
+
 /*============================
 TELA INICIAL
 =============================*/
+
 
 #homeScreen{
 
@@ -56,6 +68,8 @@ TELA INICIAL
 
 }
 
+
+
 .logo{
 
     width:190px;
@@ -64,13 +78,7 @@ TELA INICIAL
 
 }
 
-h1{
 
-    font-size:30px;
-
-    margin-bottom:8px;
-
-}
 
 .subtitle{
 
@@ -82,6 +90,8 @@ h1{
 
 }
 
+
+
 #homeScreen h3{
 
     margin-bottom:20px;
@@ -90,9 +100,14 @@ h1{
 
 }
 
+
+
+
+
 /*============================
 IDIOMAS
 =============================*/
+
 
 .languages{
 
@@ -103,6 +118,8 @@ IDIOMAS
     gap:15px;
 
 }
+
+
 
 .language{
 
@@ -120,9 +137,9 @@ IDIOMAS
 
     transition:.25s;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.10);
-
 }
+
+
 
 .language:hover{
 
@@ -130,17 +147,29 @@ IDIOMAS
 
 }
 
+
+
+
+
+
 /*============================
 TELA MÚSICAS
 =============================*/
+
 
 .music-screen{
 
     display:none;
 
-    padding:20px;
+    padding:18px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
 
 }
+
+
 
 .back-button{
 
@@ -152,7 +181,7 @@ TELA MÚSICAS
 
     cursor:pointer;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 
     color:#0C4174;
 
@@ -160,25 +189,49 @@ TELA MÚSICAS
 
 }
 
+
+
 .music-screen h2{
 
     text-align:center;
 
-    margin-bottom:20px;
+    margin-bottom:15px;
+
+    font-size:21px;
 
 }
 
+
+
+
+
+
+/*============================
+PESQUISA
+=============================*/
+
+
+.search-area{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-bottom:12px;
+
+}
+
+
+
 .search-box{
 
-    width:100%;
+    flex:1;
 
     background:#F3F4F6;
 
-    padding:14px;
+    padding:12px;
 
     border-radius:14px;
-
-    margin-bottom:20px;
 
     border:none;
 
@@ -186,9 +239,11 @@ TELA MÚSICAS
 
     color:#333;
 
-    font-size:16px;
+    font-size:15px;
 
 }
+
+
 
 .search-box::placeholder{
 
@@ -196,11 +251,57 @@ TELA MÚSICAS
 
 }
 
+
+
+.search-button{
+
+    width:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#0C4174;
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
 }
+
+
+
+
+
+
+
+/*============================
+TÍTULOS
+=============================*/
+
+
+.music-screen h3{
+
+    font-size:16px;
+
+    margin-bottom:10px;
+
+    color:#0C4174;
+
+}
+
+
+
+
+
+
 
 /*============================
 CARDS
 =============================*/
+
 
 .music-card{
 
@@ -210,27 +311,33 @@ CARDS
 
     align-items:center;
 
-    gap:15px;
+    gap:12px;
 
-    padding:14px;
+    padding:10px;
 
     border:2px solid #ddd;
 
-    border-radius:18px;
+    border-radius:16px;
 
-    margin-bottom:15px;
+    margin-bottom:10px;
 
     cursor:pointer;
 
     transition:.25s;
 
+    background:white;
+
 }
+
+
 
 .music-card:hover{
 
-    transform:scale(1.02);
+    transform:scale(1.01);
 
 }
+
+
 
 .music-card.selected{
 
@@ -240,43 +347,59 @@ CARDS
 
 }
 
-.cover{
 
-    width:68px;
 
-    height:68px;
+.music-card img{
 
-    border-radius:15px;
+    width:60px;
 
-    background:#ececec;
+    height:60px;
 
-    display:flex;
+    border-radius:12px;
 
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:28px;
+    object-fit:cover;
 
 }
+
+
+
+#topHits .music-card img{
+
+    width:45px;
+
+    height:45px;
+
+}
+
+
 
 .music-info strong{
 
-    font-size:16px;
+    font-size:15px;
+
+    color:#111;
 
 }
 
-.music-info p{
+
+
+.music-info span{
 
     color:#777;
 
-    margin-top:5px;
+    font-size:13px;
 
 }
+
+
+
+
+
 
 /*============================
 CHECK
 =============================*/
+
 
 .check{
 
@@ -284,13 +407,13 @@ CHECK
 
     position:absolute;
 
-    right:12px;
+    right:10px;
 
-    top:12px;
+    top:10px;
 
-    width:24px;
+    width:22px;
 
-    height:24px;
+    height:22px;
 
     border-radius:50%;
 
@@ -300,11 +423,13 @@ CHECK
 
     text-align:center;
 
-    line-height:24px;
+    line-height:22px;
 
-    font-size:13px;
+    font-size:12px;
 
 }
+
+
 
 .music-card.selected .check{
 
@@ -312,17 +437,23 @@ CHECK
 
 }
 
+
+
+
+
+
 /*============================
-BOTÃO
+BOTÃO MOTORISTA
 =============================*/
+
 
 .send-button{
 
     width:100%;
 
-    margin-top:15px;
+    margin-top:12px;
 
-    padding:16px;
+    padding:15px;
 
     border:none;
 
@@ -332,17 +463,15 @@ BOTÃO
 
     color:white;
 
-    font-size:17px;
+    font-size:16px;
 
     font-weight:bold;
 
     cursor:not-allowed;
 
-    transition:.25s;
-
 }
 
-/* Quando habilitado */
+
 
 .send-button.enabled{
 
@@ -352,18 +481,10 @@ BOTÃO
 
 }
 
-/* Efeito ao passar o mouse */
 
-.send-button.enabled:hover{
-
-    transform:scale(1.02);
-
-}
-
-/* Quando estiver desabilitado */
 
 .send-button:disabled{
 
-    opacity:0.8;
+    opacity:.8;
 
 }
