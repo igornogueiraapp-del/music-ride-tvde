@@ -80,36 +80,11 @@ function openMusic(language){
 
     }
 
-
-    loadTopHits();
-
-}
-
-
-
-// ==========================
-// VOLTAR
-// ==========================
-
-function goBack(){
-
-    document.getElementById("musicScreen").style.display = "none";
-
-    document.getElementById("homeScreen").style.display = "block";
-
-
-}
-
-
-
-// ==========================
-// MÚSICAS MAIS PEDIDAS
-// ==========================
-
 function loadTopHits(){
 
 
     document.getElementById("topHits").innerHTML = `
+
 
     <div class="music-card"
     onclick="selectMusic(this)"
@@ -129,6 +104,49 @@ function loadTopHits(){
 
 
     </div>
+
+
+
+    <div class="music-card"
+    onclick="selectMusic(this)"
+    data-link="https://www.youtube.com/watch?v=yKNxeF4KMsY">
+
+
+        <img src="https://i.ytimg.com/vi/yKNxeF4KMsY/hqdefault.jpg">
+
+
+        <div class="music-info">
+
+            <strong>Yellow</strong>
+
+            <span>Coldplay</span>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="music-card"
+    onclick="selectMusic(this)"
+    data-link="https://www.youtube.com/watch?v=7wtfhZwyrcc">
+
+
+        <img src="https://i.ytimg.com/vi/7wtfhZwyrcc/hqdefault.jpg">
+
+
+        <div class="music-info">
+
+            <strong>Believer</strong>
+
+            <span>Imagine Dragons</span>
+
+        </div>
+
+
+    </div>
+
 
     `;
 
