@@ -1,117 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RideTune</title>
 
-  <link rel="stylesheet" href="style.css">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RideTune</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- TELA INICIAL -->
+    <!-- ===========================
+         TELA INICIAL
+    ============================ -->
+
     <div id="homeScreen">
 
-        <img src="images/logo.png" alt="RideTune" class="logo">
+        <img src="images/logo.png"
+             alt="RideTune"
+             class="logo">
 
         <p class="subtitle">
+
             Your ride. Your soundtrack.
+
         </p>
 
-        <h3>Escolha seu idioma</h3>
+        <h3 id="languageTitle">
+            Escolha seu idioma
+        </h3>
 
-        <div class="languages" id="languageScreen">
+        <div class="languages">
 
-            <div class="language" onclick="openMusic('pt')">
-                🇧🇷<br>Português
+            <div class="language"
+                 onclick="openMusic('pt')">
+
+                🇧🇷<br>
+
+                Português
+
             </div>
 
-            <div class="language" onclick="openMusic('en')">
-                🇺🇸<br>English
+            <div class="language"
+                 onclick="openMusic('en')">
+
+                🇺🇸<br>
+
+                English
+
             </div>
 
-            <div class="language" onclick="openMusic('es')">
-                🇪🇸<br>Español
+            <div class="language"
+                 onclick="openMusic('es')">
+
+                🇪🇸<br>
+
+                Español
+
             </div>
 
-            <div class="language" onclick="openMusic('fr')">
-                🇫🇷<br>Français
+            <div class="language"
+                 onclick="openMusic('fr')">
+
+                🇫🇷<br>
+
+                Français
+
             </div>
 
-            <div class="language" onclick="openMusic('it')">
-                🇮🇹<br>Italiano
+            <div class="language"
+                 onclick="openMusic('it')">
+
+                🇮🇹<br>
+
+                Italiano
+
             </div>
 
         </div>
 
     </div>
 
-    <!-- TELA DE MÚSICAS -->
 
-    <div class="music-screen" id="musicScreen">
 
-        <button class="back-button" onclick="goBack()">
-            ← Voltar
-        </button>
 
-        <h2>🎧 Escolha sua música</h2>
 
-       <input
-    type="text"
-    id="musicSearch"
-    class="search-box"
-    placeholder="🔎 Buscar música">
+    <!-- ===========================
+         TELA DE MÚSICAS
+    ============================ -->
 
-        <h3>⭐ Músicas mais pedidas</h3>
-
-        <div class="music-card" onclick="selectMusic(this)">
-
-            <div class="check">✔</div>
-
-            <div class="cover">🎵</div>
-
-            <div class="music-info">
-                <strong>Nome da música</strong>
-                <p>Artista</p>
-            </div>
-
-        </div>
-
-        <div class="music-card" onclick="selectMusic(this)">
-
-            <div class="check">✔</div>
-
-            <div class="cover">🎵</div>
-
-            <div class="music-info">
-                <strong>Nome da música</strong>
-                <p>Artista</p>
-            </div>
-
-        </div>
-
-        <div class="music-card" onclick="selectMusic(this)">
-
-            <div class="check">✔</div>
-
-            <div class="cover">🎵</div>
-
-            <div class="music-info">
-                <strong>Nome da música</strong>
-                <p>Artista</p>
-            </div>
-
-        </div>
+    <div
+        class="music-screen"
+        id="musicScreen">
 
         <button
-            class="send-button"
-            onclick="sendMusic()"
-            disabled>
-            🚗 Enviar ao motorista
+            class="back-button"
+            onclick="goBack()">
+
+            ← Voltar
+
         </button>
+
+
+
+        <h2 id="musicTitle">
+
+            🎧 Escolha sua música
+
+        </h2>
+
+
+
+        <input
+
+            id="musicSearch"
+
+            class="search-box"
+
+            type="text"
+
+            placeholder="🔎 Buscar música"
+
+            autocomplete="off"
+          >
+      <!-- ===========================
+             TOP HITS
+        ============================ -->
+
+        <h3 id="topHitsTitle">
+
+            ⭐ Músicas mais pedidas
+
+        </h3>
+
+        <div id="topHits">
+
+            <!-- Os Top Hits serão carregados automaticamente pelo JavaScript -->
+
+        </div>
+
+
+
+        <!-- ===========================
+             RESULTADOS DA PESQUISA
+        ============================ -->
+
+        <div id="searchResults">
+
+            <!-- Os resultados aparecerão aqui -->
+
+        </div>
+
+
+
+        <!-- ===========================
+             BOTÃO
+        ============================ -->
+
+        <button
+
+            class="send-button"
+
+            id="sendButton"
+
+            onclick="sendMusic()"
+
+            disabled>
+
+            🚗 Enviar ao motorista
+
+        </button>
+
+
 
     </div>
 
@@ -120,4 +187,7 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
+
+        >
