@@ -67,15 +67,15 @@ function openMusic(language){
     }
 
 
-    // Música de teste para abrir no Demus
+    // Música de teste
 
     document.getElementById("topHits").innerHTML = `
 
         <div class="music-card"
-             onclick="selectMusic(this)"
-             data-link="https://youtube.com/watch?v=5NPBIwQyPWE">
+        onclick="selectMusic(this)"
+        data-link="https://m.youtube.com/watch?v=qFLhGq0060w&list=RDqFLhGq0060w&start_radio=1">
 
-             🎵 Música teste
+            🎵 Música teste
 
         </div>
 
@@ -84,12 +84,14 @@ function openMusic(language){
 }
 
 
+
 function goBack(){
 
     document.getElementById("musicScreen").style.display = "none";
     document.getElementById("homeScreen").style.display = "block";
 
 }
+
 
 
 function selectMusic(card){
@@ -115,6 +117,7 @@ function selectMusic(card){
 
 
 
+
 function sendMusic(){
 
     if(selectedMusic == null){
@@ -124,12 +127,15 @@ function sendMusic(){
     }
 
 
-    const musicLink = selectedMusic.getAttribute("data-link");
+    const youtubeLink = selectedMusic.getAttribute("data-link");
 
 
-    if(musicLink){
+    if(youtubeLink){
 
-        window.location.href = musicLink;
+        const demusLink = "demus://?url=" + encodeURIComponent(youtubeLink);
+
+
+        window.location.href = demusLink;
 
     }
 
