@@ -70,7 +70,7 @@ function openMusic(language){
 
     }
 
-  else{
+else{
 
     backButton.innerHTML = "← Voltar";
     musicTitle.innerHTML = "🎧 Escolha sua música";
@@ -79,6 +79,10 @@ function openMusic(language){
     sendButton.innerHTML = "🚗 Enviar ao motorista";
 
 }
+
+
+loadTopHits();
+
 
 }
 
