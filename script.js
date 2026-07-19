@@ -79,9 +79,27 @@ else{
     sendButton.innerHTML = "🚗 Enviar ao motorista";
 
 }
+}
 
 
-loadTopHits();
+// ==========================
+// VOLTAR
+// ==========================
+
+function goBack(){
+
+    document.getElementById("musicScreen").style.display = "none";
+
+    document.getElementById("homeScreen").style.display = "block";
+
+}
+
+
+// ==========================
+// MÚSICAS MAIS PEDIDAS
+// ==========================
+
+function loadTopHits(){
 
 
 }
