@@ -41,7 +41,6 @@ db.collection("pedidos")
     snapshot.forEach(function(doc){
 
         const pedido = doc.data();
-
         const status = pedido.status || "Pendente";
 
         const card = `
@@ -59,21 +58,15 @@ db.collection("pedidos")
                 <br><br>
 
                 <button onclick="openMusic('${pedido.link}')">
-
                     ▶️ Abrir música
-
                 </button>
 
                 <button onclick="acceptRequest('${doc.id}')">
-
                     ✅ Aceitar pedido
-
                 </button>
 
                 <button onclick="completeRequest('${doc.id}')">
-
                     ✔️ Concluir pedido
-
                 </button>
 
             </div>
@@ -87,13 +80,11 @@ db.collection("pedidos")
             pendentesDiv.innerHTML += card;
 
         }
-
         else if(status === "Aceito"){
 
             aceitosDiv.innerHTML += card;
 
         }
-
         else{
 
             concluidosDiv.innerHTML += card;
@@ -115,8 +106,6 @@ function openMusic(link){
 }
 
 
-
-
 // ==========================
 // ACEITAR PEDIDO
 // ==========================
@@ -134,8 +123,6 @@ function acceptRequest(id){
 }
 
 
-
-
 // ==========================
 // CONCLUIR PEDIDO
 // ==========================
@@ -151,5 +138,3 @@ function completeRequest(id){
     });
 
 }
-
-
