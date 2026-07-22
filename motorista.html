@@ -1,140 +1,58 @@
-// ==========================
-// FIREBASE
-// ==========================
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-firebase.initializeApp(firebaseConfig);
+<head>
 
-const db = firebase.firestore();
+<meta charset="UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-// ==========================
-// ELEMENTOS DA TELA
-// ==========================
+<title>RideTune Motorista</title>
 
-const pendentesDiv = document.getElementById("pendentes");
-const aceitosDiv = document.getElementById("aceitos");
-const concluidosDiv = document.getElementById("concluidos");
+<link rel="stylesheet" href="style.css">
 
+</head>
 
-// ==========================
-// CARREGAR PEDIDOS
-// ==========================
+<body>
 
-db.collection("pedidos")
-.orderBy("createdAt", "desc")
-.onSnapshot(function(snapshot){
+<div class="container">
 
-    pendentesDiv.innerHTML = "";
-    aceitosDiv.innerHTML = "";
-    concluidosDiv.innerHTML = "";
+    <h2>🚗 Painel do Motorista</h2>
 
-    if(snapshot.empty){
+    <h3>⏳ Pedidos Pendentes</h3>
 
-        pendentesDiv.innerHTML = "Nenhum pedido.";
-        aceitosDiv.innerHTML = "Nenhum pedido.";
-        concluidosDiv.innerHTML = "Nenhum pedido.";
+    <div id="pendentes">
 
-        return;
+        Carregando pedidos...
 
-    }
+    </div>
 
-    snapshot.forEach(function(doc){
+    <h3>✅ Pedidos Aceitos</h3>
 
-        const pedido = doc.data();
-        const status = pedido.status || "Pendente";
+    <div id="aceitos">
 
-        const card = `
+        Nenhum pedido aceito.
 
-        <div class="music-card">
+    </div>
 
-            <div class="music-info">
+    <h3>✔️ Pedidos Concluídos</h3>
 
-                <strong>${pedido.music}</strong>
+    <div id="concluidos">
 
-                <span>${pedido.artist}</span>
+        Nenhum pedido concluído.
 
-                <small>Status: ${status}</small>
+    </div>
 
-                <br><br>
+</div>
 
-                <button onclick="openMusic('${pedido.link}')">
-                    ▶️ Abrir música
-                </button>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
-                <button onclick="acceptRequest('${doc.id}')">
-                    ✅ Aceitar pedido
-                </button>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-                <button onclick="completeRequest('${doc.id}')">
-                    ✔️ Concluir pedido
-                </button>
+<script src="config.js"></script>
 
-            </div>
+<script src="motorista.js"></script>
 
-        </div>
+</body>
 
-        `;
-
-        if(status === "Pendente"){
-
-            pendentesDiv.innerHTML += card;
-
-        }
-        else if(status === "Aceito"){
-
-            aceitosDiv.innerHTML += card;
-
-        }
-        else{
-
-            concluidosDiv.innerHTML += card;
-
-        }
-
-    });
-
-});
-
-// ==========================
-// ABRIR MÚSICA
-// ==========================
-
-function openMusic(link){
-
-    window.open(link, "_blank");
-
-}
-
-
-// ==========================
-// ACEITAR PEDIDO
-// ==========================
-
-function acceptRequest(id){
-
-    db.collection("pedidos")
-    .doc(id)
-    .update({
-
-        status: "Aceito"
-
-    });
-
-}
-
-
-// ==========================
-// CONCLUIR PEDIDO
-// ==========================
-
-function completeRequest(id){
-
-    db.collection("pedidos")
-    .doc(id)
-    .update({
-
-        status: "Concluído"
-
-    });
-
-}
+</html>
