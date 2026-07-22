@@ -1,4 +1,33 @@
+// ==========================
+// FIREBASE CONFIGURAÇÃO
+// ==========================
+
+// Cole aqui os dados do seu Firebase
+const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU_PROJETO.firebaseapp.com",
+    projectId: "SEU_PROJECT_ID",
+    storageBucket: "SEU_PROJETO.appspot.com",
+    messagingSenderId: "SEU_SENDER_ID",
+    appId: "SEU_APP_ID"
+};
+
+
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+// Banco Firestore
+const db = firebase.firestore();
+
+
+
+// ==========================
+// VARIÁVEIS DO APP
+// ==========================
+
 let selectedMusic = null;
+
 
 
 // ==========================
@@ -20,14 +49,17 @@ function openMusic(language){
 
     selectedMusic = null;
 
+
     sendButton.disabled = true;
     sendButton.classList.remove("enabled");
 
 
     document.getElementById("searchResults").innerHTML = "";
 
+
     document.getElementById("topHits").style.display = "block";
     topHitsTitle.style.display = "block";
+
 
 
     if(language === "en"){
@@ -40,6 +72,7 @@ function openMusic(language){
 
     }
 
+
     else if(language === "es"){
 
         backButton.innerHTML = "← Volver";
@@ -49,6 +82,7 @@ function openMusic(language){
         sendButton.innerHTML = "🚗 Enviar al conductor";
 
     }
+
 
     else if(language === "fr"){
 
@@ -60,6 +94,7 @@ function openMusic(language){
 
     }
 
+
     else if(language === "it"){
 
         backButton.innerHTML = "← Indietro";
@@ -70,20 +105,21 @@ function openMusic(language){
 
     }
 
-else{
 
-    backButton.innerHTML = "← Voltar";
-    musicTitle.innerHTML = "🎧 Escolha sua música";
-    searchBox.placeholder = "🔎 Buscar música";
-    topHitsTitle.innerHTML = "⭐ Músicas mais pedidas";
-    sendButton.innerHTML = "🚗 Enviar ao motorista";
+    else{
 
-}
+        backButton.innerHTML = "← Voltar";
+        musicTitle.innerHTML = "🎧 Escolha sua música";
+        searchBox.placeholder = "🔎 Buscar música";
+        topHitsTitle.innerHTML = "⭐ Músicas mais pedidas";
+        sendButton.innerHTML = "🚗 Enviar ao motorista";
+
+    }
+
+
     loadTopHits();
-}
 
-
-// ==========================
+}// ==========================
 // VOLTAR
 // ==========================
 
@@ -96,14 +132,6 @@ function goBack(){
 }
 
 
-// ==========================
-// MÚSICAS MAIS PEDIDAS
-// ==========================
-
-function loadTopHits(){
-
-
-}
 
 
 // ==========================
@@ -182,6 +210,8 @@ function loadTopHits(){
 
 
 }
+
+
 
 
 
@@ -300,12 +330,7 @@ async function searchMusic(){
 
 
 
-}
-
-
-
-
-// ==========================
+}// ==========================
 // SELEÇÃO
 // ==========================
 
@@ -341,10 +366,76 @@ function selectMusic(card){
 
 
 // ==========================
+// SALVAR PEDIDO NO FIRESTORE
+// ==========================
+
+async function saveMusicRequest(){
+
+
+    if(selectedMusic == null){
+
+        return false;
+
+    }
+
+
+
+    const link = selectedMusic.getAttribute("data-link");
+
+
+    const title = selectedMusic.querySelector("strong").innerText;
+
+
+    const artist = selectedMusic.querySelector("span").innerText;
+
+
+
+    try{
+
+
+        await db.collection("musicRequests").add({
+
+            music: title,
+
+            artist: artist,
+
+            link: link,
+
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+
+        });
+
+
+
+        return true;
+
+
+    }
+
+
+    catch(error){
+
+
+        console.log("Erro ao salvar música:", error);
+
+
+        return false;
+
+
+    }
+
+
+}
+
+
+
+
+
+// ==========================
 // ENVIAR PARA DEMUS
 // ==========================
 
-function sendMusic(){
+async function sendMusic(){
 
 
     if(selectedMusic == null){
@@ -354,12 +445,30 @@ function sendMusic(){
     }
 
 
+
+    const saved = await saveMusicRequest();
+
+
+
+    if(!saved){
+
+        alert("Erro ao enviar música");
+
+        return;
+
+    }
+
+
+
+
     const link = selectedMusic.getAttribute("data-link");
+
 
 
     window.location.href =
 
     "demus://?url=" + encodeURIComponent(link);
+
 
 
 }
