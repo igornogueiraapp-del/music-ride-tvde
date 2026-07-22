@@ -1,610 +1,193 @@
-// ==========================
-// FIREBASE
-// ==========================
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-firebase.initializeApp(firebaseConfig);
+<head>
 
-const db = firebase.firestore();
+<meta charset="UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>RideTune</title>
 
-// ==========================
-// VARIÁVEIS
-// ==========================
+<link rel="stylesheet" href="style.css">
 
-let selectedMusic = null;
+</head>
 
+<body>
 
+<div class="container">
 
-// ==========================
-// ABRIR TELA DE MÚSICA
-// ==========================
+    <!-- ===========================
+         TELA INICIAL
+    ============================ -->
 
-function openMusic(language){
+    <div id="homeScreen">
 
-    document.getElementById("homeScreen").style.display = "none";
+        <img src="images/logo.png"
+             alt="RideTune"
+             class="logo">
 
-    document.getElementById("musicScreen").style.display = "block";
+        <p class="subtitle">
 
+            Your ride. Your soundtrack.
 
-    const backButton = document.querySelector(".back-button");
+        </p>
 
-    const musicTitle = document.getElementById("musicTitle");
+        <h3 id="languageTitle">
 
-    const searchBox = document.getElementById("musicSearch");
+            Escolha seu idioma
 
-    const topHitsTitle = document.getElementById("topHitsTitle");
+        </h3>
 
-    const sendButton = document.getElementById("sendButton");
+        <div class="languages">
 
+            <div class="language"
+                 onclick="openMusic('pt')">
 
-
-    selectedMusic = null;
-
-
-    sendButton.disabled = true;
-
-    sendButton.classList.remove("enabled");
-
-
-
-    document.getElementById("searchResults").innerHTML = "";
-
-
-
-    document.getElementById("topHits").style.display = "block";
-
-    topHitsTitle.style.display = "block";
-
-
-
-
-
-    if(language === "en"){
-
-
-        backButton.innerHTML = "← Back";
-
-        musicTitle.innerHTML = "🎧 Choose your music";
-
-        searchBox.placeholder = "🔎 Search music";
-
-        topHitsTitle.innerHTML = "⭐ Most requested songs";
-
-        sendButton.innerHTML = "🚗 Send to driver";
-
-
-    }
-
-
-
-    else if(language === "es"){
-
-
-        backButton.innerHTML = "← Volver";
-
-        musicTitle.innerHTML = "🎧 Elige tu música";
-
-        searchBox.placeholder = "🔎 Buscar música";
-
-        topHitsTitle.innerHTML = "⭐ Canciones más solicitadas";
-
-        sendButton.innerHTML = "🚗 Enviar al conductor";
-
-
-    }
-
-
-
-    else if(language === "fr"){
-
-
-        backButton.innerHTML = "← Retour";
-
-        musicTitle.innerHTML = "🎧 Choisissez votre musique";
-
-        searchBox.placeholder = "🔎 Rechercher une musique";
-
-        topHitsTitle.innerHTML = "⭐ Musiques les plus demandées";
-
-        sendButton.innerHTML = "🚗 Envoyer au conducteur";
-
-
-    }
-
-
-
-    else if(language === "it"){
-
-
-        backButton.innerHTML = "← Indietro";
-
-        musicTitle.innerHTML = "🎧 Scegli la tua musica";
-
-        searchBox.placeholder = "🔎 Cerca musica";
-
-        topHitsTitle.innerHTML = "⭐ Brani più richiesti";
-
-        sendButton.innerHTML = "🚗 Invia al conducente";
-
-
-    }
-
-
-
-    else{
-
-
-        backButton.innerHTML = "← Voltar";
-
-        musicTitle.innerHTML = "🎧 Escolha sua música";
-
-        searchBox.placeholder = "🔎 Buscar música";
-
-        topHitsTitle.innerHTML = "⭐ Músicas mais pedidas";
-
-        sendButton.innerHTML = "🚗 Enviar ao motorista";
-
-
-    }
-
-                                
-
-    loadTopHits();    
-        
-
-}// ==========================
-// VOLTAR
-// ==========================
-
-function goBack(){
-
-    document.getElementById("musicScreen").style.display = "none";
-
-    document.getElementById("homeScreen").style.display = "block";
-
-}
-
-
-
-
-// ==========================
-// MÚSICAS MAIS PEDIDAS
-// ==========================
-
-function loadTopHits(){
-
-
-    document.getElementById("topHits").innerHTML = `
-
-
-    <div class="music-card"
-    onclick="selectMusic(this)"
-    data-link="https://youtube.com/watch?v=qFLhGq0060w">
-
-
-        <img src="https://i.ytimg.com/vi/qFLhGq0060w/hqdefault.jpg">
-
-
-        <div class="music-info">
-
-            <strong>Save Your Tears</strong>
-
-            <span>The Weeknd</span>
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="music-card"
-    onclick="selectMusic(this)"
-    data-link="https://www.youtube.com/watch?v=yKNxeF4KMsY">
-
-
-        <img src="https://i.ytimg.com/vi/yKNxeF4KMsY/hqdefault.jpg">
-
-
-        <div class="music-info">
-
-            <strong>Yellow</strong>
-
-            <span>Coldplay</span>
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="music-card"
-    onclick="selectMusic(this)"
-    data-link="https://www.youtube.com/watch?v=7wtfhZwyrcc">
-
-
-        <img src="https://i.ytimg.com/vi/7wtfhZwyrcc/hqdefault.jpg">
-
-
-        <div class="music-info">
-
-            <strong>Believer</strong>
-
-            <span>Imagine Dragons</span>
-
-        </div>
-
-
-    </div>
-
-
-    `;
-
-
-}
-
-
-
-
-
-// ==========================
-// PESQUISA
-// ==========================
-
-document.addEventListener("DOMContentLoaded", function(){
-
-
-    const input = document.getElementById("musicSearch");
-
-
-    input.addEventListener("keypress", function(event){
-
-
-        if(event.key === "Enter"){
-
-
-            searchMusic();
-
-
-        }
-
-
-    });
-
-
-});
-
-
-
-
-
-
-async function searchMusic(){
-
-
-    const query = document.getElementById("musicSearch").value;
-
-
-
-    if(query.trim() === ""){
-
-
-        return;
-
-
-    }
-
-
-
-
-    document.getElementById("topHits").style.display = "none";
-
-
-    document.getElementById("topHitsTitle").style.display = "none";
-
-
-
-
-
-    const url =
-
-
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${YOUTUBE_API_KEY}`;
-
-
-
-
-
-    const response = await fetch(url);
-
-
-
-    const data = await response.json();
-
-
-
-
-
-    const results = document.getElementById("searchResults");
-
-
-
-    results.innerHTML = "";
-
-
-
-
-
-    data.items.forEach(function(item){
-
-
-
-        const videoId = item.id.videoId;
-
-
-
-
-
-        results.innerHTML += `
-
-
-
-        <div class="music-card"
-
-        onclick="selectMusic(this)"
-
-        data-link="https://youtube.com/watch?v=${videoId}">
-
-
-
-
-
-            <img src="${item.snippet.thumbnails.medium.url}">
-
-
-
-
-
-            <div class="music-info">
-
-
-
-                <strong>${item.snippet.title}</strong>
-
-
-
-                <span>${item.snippet.channelTitle}</span>
-
-
+                🇧🇷<br>
+                Português
 
             </div>
 
+            <div class="language"
+                 onclick="openMusic('en')">
 
+                🇺🇸<br>
+                English
 
+            </div>
 
+            <div class="language"
+                 onclick="openMusic('es')">
+
+                🇪🇸<br>
+                Español
+
+            </div>
+
+            <div class="language"
+                 onclick="openMusic('fr')">
+
+                🇫🇷<br>
+                Français
+
+            </div>
+
+            <div class="language"
+                 onclick="openMusic('it')">
+
+                🇮🇹<br>
+                Italiano
+
+            </div>
 
         </div>
 
+    </div>
 
+    <!-- ===========================
+         TELA DE MÚSICAS
+    ============================ -->
 
+    <div class="music-screen"
+         id="musicScreen">
 
+        <button
+            class="back-button"
+            onclick="goBack()">
 
-        `;
+            ← Voltar
 
+        </button>
 
+        <h2 id="musicTitle">
 
-    });
+            🎧 Escolha sua música
 
+        </h2>
 
+        <!-- PESQUISA -->
 
-// ==========================
-// SELEÇÃO
-// ==========================
+        <div class="search-area">
 
-function selectMusic(card){
+            <input
 
+            id="musicSearch"
 
-    document.querySelectorAll(".music-card").forEach(function(item){
+            class="search-box"
 
+            type="text"
 
-        item.classList.remove("selected");
+            placeholder="🔎 Buscar música"
 
+            autocomplete="off"
 
-    });
+            />
 
+            <button
 
+            class="search-button"
 
-    card.classList.add("selected");
+            onclick="searchMusic()">
 
+                🔍
 
+            </button>
 
-    selectedMusic = card;
+        </div>
 
+        <!-- ===========================
+             TOP HITS
+        ============================ -->
 
+        <h3 id="topHitsTitle">
 
-    const button = document.getElementById("sendButton");
+            ⭐ Músicas mais pedidas
 
+        </h3>
 
+        <div id="topHits">
 
-    button.disabled = false;
+        </div>
 
+        <!-- ===========================
+             RESULTADOS PESQUISA
+        ============================ -->
 
+        <div id="searchResults">
 
-    button.classList.add("enabled");
+        </div>
 
+        <!-- ===========================
+             BOTÃO MOTORISTA
+        ============================ -->
 
+        <button
 
-}
+        class="send-button"
 
+        id="sendButton"
 
+        onclick="sendMusic()"
 
+        disabled>
 
-// ==========================
-// SALVAR PEDIDO NO FIRESTORE
-// ==========================
+            🚗 Enviar ao motorista
 
-async function saveMusicRequest(){
+        </button>
 
+    </div>
 
+</div>
 
-    if(selectedMusic == null){
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
-        return false;
+<script src="config.js"></script>
 
+<script src="script.js"></script>
 
-    }
+</body>
 
-
-
-
-
-    const link = selectedMusic.getAttribute("data-link");
-
-
-
-    const title = selectedMusic.querySelector("strong").innerText;
-
-
-
-    const artist = selectedMusic.querySelector("span").innerText;
-
-
-
-
-
-
-    try{
-
-
-
-        await db.collection("musicRequests").add({
-
-
-
-            music: title,
-
-
-
-            artist: artist,
-
-
-
-            link: link,
-
-
-
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-
-
-
-        });
-
-
-
-
-
-        console.log("Música salva no Firebase");
-
-
-
-        return true;
-
-
-
-    }
-
-
-
-    catch(error){
-
-
-
-        console.log("Erro ao salvar música:", error);
-
-
-
-        return false;
-
-
-
-    }
-
-
-
-}
-
-
-
-
-
-
-// ==========================
-// ENVIAR PARA DEMUS
-// ==========================
-
-async function sendMusic(){
-
-
-
-    if(selectedMusic == null){
-
-
-
-        return;
-
-
-
-    }
-
-
-
-
-
-
-    const saved = await saveMusicRequest();
-
-
-
-
-
-
-    if(!saved){
-
-
-
-        alert("Erro ao enviar música");
-
-
-
-        return;
-
-
-
-    }
-
-
-
-
-
-
-    const link = selectedMusic.getAttribute("data-link");
-
-
-
-
-
-
-    window.location.href =
-
-
-
-    "demus://?url=" + encodeURIComponent(link);
-
-
-
-
-}
-}
+</html>
