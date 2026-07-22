@@ -1,46 +1,140 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+// ==========================
+// FIREBASE
+// ==========================
 
-<head>
+firebase.initializeApp(firebaseConfig);
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RideTune Motorista</title>
-
-<link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
+const db = firebase.firestore();
 
 
-<div class="container">
+// ==========================
+// ELEMENTOS DA TELA
+// ==========================
+
+const pendentesDiv = document.getElementById("pendentes");
+const aceitosDiv = document.getElementById("aceitos");
+const concluidosDiv = document.getElementById("concluidos");
 
 
-<h2>🚗 Pedidos dos passageiros</h2>
+// ==========================
+// CARREGAR PEDIDOS
+// ==========================
+
+db.collection("pedidos")
+.orderBy("createdAt", "desc")
+.onSnapshot(function(snapshot){
+
+    pendentesDiv.innerHTML = "";
+    aceitosDiv.innerHTML = "";
+    concluidosDiv.innerHTML = "";
+
+    if(snapshot.empty){
+
+        pendentesDiv.innerHTML = "Nenhum pedido.";
+        aceitosDiv.innerHTML = "Nenhum pedido.";
+        concluidosDiv.innerHTML = "Nenhum pedido.";
+
+        return;
+
+    }
+
+    snapshot.forEach(function(doc){
+
+        const pedido = doc.data();
+        const status = pedido.status || "Pendente";
+
+        const card = `
+
+        <div class="music-card">
+
+            <div class="music-info">
+
+                <strong>${pedido.music}</strong>
+
+                <span>${pedido.artist}</span>
+
+                <small>Status: ${status}</small>
+
+                <br><br>
+
+                <button onclick="openMusic('${pedido.link}')">
+                    ▶️ Abrir música
+                </button>
+
+                <button onclick="acceptRequest('${doc.id}')">
+                    ✅ Aceitar pedido
+                </button>
+
+                <button onclick="completeRequest('${doc.id}')">
+                    ✔️ Concluir pedido
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+        if(status === "Pendente"){
+
+            pendentesDiv.innerHTML += card;
+
+        }
+        else if(status === "Aceito"){
+
+            aceitosDiv.innerHTML += card;
+
+        }
+        else{
+
+            concluidosDiv.innerHTML += card;
+
+        }
+
+    });
+
+});
+
+// ==========================
+// ABRIR MÚSICA
+// ==========================
+
+function openMusic(link){
+
+    window.open(link, "_blank");
+
+}
 
 
-<div id="pedidos">
+// ==========================
+// ACEITAR PEDIDO
+// ==========================
 
-Carregando pedidos...
+function acceptRequest(id){
 
-</div>
+    db.collection("pedidos")
+    .doc(id)
+    .update({
 
+        status: "Aceito"
 
-</div>
+    });
 
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<script src="config.js"></script>
-
-<script src="motorista.js"></script>
+}
 
 
-</body>
+// ==========================
+// CONCLUIR PEDIDO
+// ==========================
 
-</html>
+function completeRequest(id){
+
+    db.collection("pedidos")
+    .doc(id)
+    .update({
+
+        status: "Concluído"
+
+    });
+
+}
