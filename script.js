@@ -418,11 +418,10 @@ async function saveMusicRequest(){
 
 
 // ==========================
-// ENVIAR PARA DEMUS
+// ENVIAR AO MOTORISTA
 // ==========================
 
 async function sendMusic(){
-
 
     if(selectedMusic == null){
 
@@ -430,31 +429,38 @@ async function sendMusic(){
 
     }
 
-
-
     const saved = await saveMusicRequest();
-
-
 
     if(!saved){
 
-        alert("Erro ao enviar música");
+        alert("Erro ao enviar música.");
 
         return;
 
     }
 
+    alert("✅ Música enviada ao motorista!");
 
+    // Limpa a seleção
+    selectedMusic = null;
 
+    document.querySelectorAll(".music-card").forEach(function(item){
 
-    const link = selectedMusic.getAttribute("data-link");
+        item.classList.remove("selected");
 
+    });
 
+    document.getElementById("musicSearch").value = "";
+    document.getElementById("searchResults").innerHTML = "";
 
-    window.location.href =
+    document.getElementById("topHits").style.display = "block";
+    document.getElementById("topHitsTitle").style.display = "block";
 
-    "demus://?url=" + encodeURIComponent(link);
+    loadTopHits();
 
+    const button = document.getElementById("sendButton");
 
+    button.disabled = true;
+    button.classList.remove("enabled");
 
 }
