@@ -393,7 +393,7 @@ async function saveMusicRequest(){
     try{
 
 
-        await db.collection("musicRequests").add({
+        await db.collection("pedidos").add({
 
             music: title,
 
