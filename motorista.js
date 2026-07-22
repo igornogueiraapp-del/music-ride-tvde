@@ -57,7 +57,6 @@ db.collection("pedidos")
                 <small>Status: ${pedido.status || "Pendente"}</small>
 
 
-
                 <br><br>
 
 
@@ -73,6 +72,14 @@ db.collection("pedidos")
                 <button onclick="acceptRequest('${doc.id}')">
 
                     ✅ Aceitar pedido
+
+                </button>
+
+
+
+                <button onclick="completeRequest('${doc.id}')">
+
+                    ✔️ Concluir pedido
 
                 </button>
 
@@ -103,9 +110,7 @@ db.collection("pedidos")
 
 function openMusic(link){
 
-
     window.open(link, "_blank");
-
 
 }
 
@@ -125,6 +130,28 @@ function acceptRequest(id){
     .update({
 
         status: "Aceito"
+
+    });
+
+
+}
+
+
+
+
+
+// ==========================
+// CONCLUIR PEDIDO
+// ==========================
+
+function completeRequest(id){
+
+
+    db.collection("pedidos")
+    .doc(id)
+    .update({
+
+        status: "Concluído"
 
     });
 
