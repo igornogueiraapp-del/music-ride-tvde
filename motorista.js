@@ -1,4 +1,3 @@
-
 // ==========================
 // FIREBASE
 // ==========================
@@ -58,6 +57,27 @@ db.collection("pedidos")
                 <small>Status: ${pedido.status || "Pendente"}</small>
 
 
+
+                <br><br>
+
+
+
+                <button onclick="openMusic('${pedido.link}')">
+
+                    ▶️ Abrir música
+
+                </button>
+
+
+
+                <button onclick="acceptRequest('${doc.id}')">
+
+                    ✅ Aceitar pedido
+
+                </button>
+
+
+
             </div>
 
 
@@ -72,3 +92,41 @@ db.collection("pedidos")
 
 
 });
+
+
+
+
+
+// ==========================
+// ABRIR MÚSICA
+// ==========================
+
+function openMusic(link){
+
+
+    window.open(link, "_blank");
+
+
+}
+
+
+
+
+
+// ==========================
+// ACEITAR PEDIDO
+// ==========================
+
+function acceptRequest(id){
+
+
+    db.collection("pedidos")
+    .doc(id)
+    .update({
+
+        status: "Aceito"
+
+    });
+
+
+}
