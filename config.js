@@ -1,11 +1,11 @@
-const YOUTUBE_API_KEY = "SUA_CHAVE_DO_YOUTUBE";
+const YOUTUBE_API_KEY = "AIzaSyBZsl1VLGmfFJ3J1MkS2F9FnsQCWQAFdJw";
 
 
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY_DO_FIREBASE",
-    authDomain: "SEU_PROJETO.firebaseapp.com",
-    projectId: "SEU_PROJECT_ID",
-    storageBucket: "SEU_PROJETO.appspot.com",
-    messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-    appId: "SEU_APP_ID"
+  apiKey: "AIzaSyBpWrfH5nECbZQifP0EYXw2d8m31ChfsZo",
+  authDomain: "ridetune-2cecc.firebaseapp.com",
+  projectId: "ridetune-2cecc",
+  storageBucket: "ridetune-2cecc.firebasestorage.app",
+  messagingSenderId: "731412434399",
+  appId: "1:731412434399:web:92bf1bd7a4fef516f1486a"
 };
