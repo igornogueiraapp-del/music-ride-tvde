@@ -12,8 +12,6 @@ const db = firebase.firestore();
 // ==========================
 
 const pendentesDiv = document.getElementById("pendentes");
-const aceitosDiv = document.getElementById("aceitos");
-const concluidosDiv = document.getElementById("concluidos");
 
 
 // ==========================
@@ -25,14 +23,10 @@ db.collection("pedidos")
 .onSnapshot(function(snapshot){
 
     pendentesDiv.innerHTML = "";
-    aceitosDiv.innerHTML = "";
-    concluidosDiv.innerHTML = "";
 
     if(snapshot.empty){
 
         pendentesDiv.innerHTML = "Nenhum pedido.";
-        aceitosDiv.innerHTML = "Nenhum pedido.";
-        concluidosDiv.innerHTML = "Nenhum pedido.";
 
         return;
 
@@ -41,9 +35,14 @@ db.collection("pedidos")
     snapshot.forEach(function(doc){
 
         const pedido = doc.data();
-        const status = pedido.status || "Pendente";
 
-        const card = `
+        if(pedido.status === "Aceito"){
+
+            return;
+
+        }
+
+        pendentesDiv.innerHTML += `
 
         <div class="music-card">
 
@@ -53,20 +52,12 @@ db.collection("pedidos")
 
                 <span>${pedido.artist}</span>
 
-                <small>Status: ${status}</small>
-
                 <br><br>
 
-                <button onclick="openMusic('${pedido.link}')">
-                    ▶️ Abrir música
-                </button>
+                <button onclick="acceptRequest('${doc.id}','${pedido.link}')">
 
-                <button onclick="acceptRequest('${doc.id}')">
-                    ✅ Aceitar pedido
-                </button>
+                    🎵 Aceitar música
 
-                <button onclick="completeRequest('${doc.id}')">
-                    ✔️ Concluir pedido
                 </button>
 
             </div>
@@ -75,66 +66,38 @@ db.collection("pedidos")
 
         `;
 
-        if(status === "Pendente"){
-
-            pendentesDiv.innerHTML += card;
-
-        }
-        else if(status === "Aceito"){
-
-            aceitosDiv.innerHTML += card;
-
-        }
-        else{
-
-            concluidosDiv.innerHTML += card;
-
-        }
-
     });
 
 });
 
 // ==========================
-// ABRIR MÚSICA
+// ACEITAR MÚSICA
 // ==========================
 
-function openMusic(link){
+async function acceptRequest(id, link){
 
-    window.open(link, "_blank");
+    try{
 
-}
+        await db.collection("pedidos")
+        .doc(id)
+        .update({
 
+            status: "Aceito"
 
-// ==========================
-// ACEITAR PEDIDO
-// ==========================
+        });
 
-function acceptRequest(id){
+        // Abre a música no Demus
+        window.location.href =
+        "demus://?url=" + encodeURIComponent(link);
 
-    db.collection("pedidos")
-    .doc(id)
-    .update({
+    }
 
-        status: "Aceito"
+    catch(error){
 
-    });
+        console.error("Erro ao aceitar pedido:", error);
 
-}
+        alert("Erro ao aceitar a música.");
 
-
-// ==========================
-// CONCLUIR PEDIDO
-// ==========================
-
-function completeRequest(id){
-
-    db.collection("pedidos")
-    .doc(id)
-    .update({
-
-        status: "Concluído"
-
-    });
+    }
 
 }
