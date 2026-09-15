@@ -44,8 +44,8 @@ async function ativarNotificacoes() {
     }
     alert("3️⃣ Permissão concedida! Registrando Service Worker...");
     const registration = await navigator.serviceWorker.register(
-      "/firebase-messaging-sw.js"
-    );
+  "./firebase-messaging-sw.js"
+);
     alert("4️⃣ Service Worker registrado! Obtendo token Firebase...");
     const token = await getToken(messaging, {
       vapidKey: VAPID_KEY,
