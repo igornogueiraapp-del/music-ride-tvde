@@ -73,9 +73,15 @@ async function ativarNotificacoes() {
 
     console.log("Token FCM:", token);
 
-  } catch (erro) {
+ } catch (erro) {
     console.error("Erro ao ativar notificações:", erro);
-    alert("Não foi possível ativar as notificações. Verifique o console.");
+
+    alert(
+      "ERRO REAL:\n\n" +
+      (erro?.code || "") +
+      "\n\n" +
+      (erro?.message || erro)
+    );
   }
 }
 
