@@ -1,14 +1,14 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getMessaging,
   getToken,
   onMessage
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
 import {
   getFirestore,
   doc,
   setDoc
-} from "https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBpWrfH5nECbZQifP0EYXw2d8m31ChfsZo",
@@ -19,24 +19,30 @@ const firebaseConfig = {
   appId: "1:731412434399:web:92bf1bd7a4fef516f1486a"
 };
 
+const VAPID_KEY =
+  "BMfQjIQxxpY2zzagi3N2aKSRl0R1PN9aAjh96f2nPYHGoaUDDjKYUUtTwX8KyE56Va2vQEL34KA7U1g8fuPbUaA";
+
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 const db = getFirestore(app);
 
-const VAPID_KEY =
-  "BMfQjIQxxpY2zzagi3N2aKSRl0R1PN9aAjh96f2nPYHGoaUDDjKYUUtTwX8KyE56Va2vQEL34KA7U1g8fuPbUaA";
+const botao = document.getElementById("ativarNotificacoes");
+
+if (botao) {
+  botao.addEventListener("click", ativarNotificacoes);
+}
 
 async function ativarNotificacoes() {
   try {
     if (!("Notification" in window)) {
-      console.log("Este navegador não suporta notificações.");
+      alert("Este dispositivo não suporta notificações.");
       return;
     }
 
     const permission = await Notification.requestPermission();
 
     if (permission !== "granted") {
-      console.log("Permissão para notificações não concedida.");
+      alert("As notificações não foram autorizadas.");
       return;
     }
 
@@ -50,7 +56,7 @@ async function ativarNotificacoes() {
     });
 
     if (!token) {
-      console.log("Não foi possível obter o token FCM.");
+      alert("Não foi possível ativar as notificações.");
       return;
     }
 
@@ -60,22 +66,26 @@ async function ativarNotificacoes() {
       dispositivo: "motorista"
     });
 
-    console.log("Notificações ativadas com sucesso.");
+    botao.textContent = "🔔 Notificações ativadas";
+    botao.disabled = true;
+
+    alert("Notificações ativadas com sucesso! ✅");
+
     console.log("Token FCM:", token);
 
   } catch (erro) {
     console.error("Erro ao ativar notificações:", erro);
+    alert("Não foi possível ativar as notificações. Verifique o console.");
   }
 }
-
-ativarNotificacoes();
 
 onMessage(messaging, (payload) => {
   console.log("Nova notificação recebida:", payload);
 
   if (Notification.permission === "granted") {
     new Notification(
-      payload.notification?.title || "🎵 Nova solicitação no RideTune",
+      payload.notification?.title ||
+        "🎵 Nova solicitação no RideTune",
       {
         body:
           payload.notification?.body ||
@@ -85,3 +95,4 @@ onMessage(messaging, (payload) => {
     );
   }
 });
+
