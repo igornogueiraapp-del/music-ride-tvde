@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.13.2/firebase-messaging-compat.js');
+importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
+importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js");
 
 firebase.initializeApp({
   apiKey: "AIzaSyBpWrfH5nECbZQifP0EYXw2d8m31ChfsZo",
@@ -13,20 +13,13 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
-  console.log("[firebase-messaging-sw.js] Nova solicitação:", payload);
-
-  const notificationTitle =
-    payload.notification?.title || "🎵 Nova solicitação no RideTune";
-
-  const notificationOptions = {
-    body:
-      payload.notification?.body ||
-      "Um passageiro acabou de pedir uma música.",
-    icon: "/logo.png"
-  };
-
   self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
+    payload.notification?.title || "🎵 Nova solicitação no RideTune",
+    {
+      body:
+        payload.notification?.body ||
+        "Um passageiro acabou de pedir uma música.",
+      icon: "/logo.png"
+    }
   );
 });
